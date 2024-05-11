@@ -1,0 +1,74 @@
+<!-- <div>
+    <form (submit)="onSubmit(deviceName.value, serialNumber.value, brand.value, condition.value)"></form>
+  <mat-form-field>
+    <mat-label>Select Device</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let device of devices" [value]="device">
+        {{ device }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Enter Device Name</mat-label>
+    <input matInput placeholder=" Device Name" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Enter Serial Number</mat-label>
+    <input matInput placeholder="Serial Number" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Enter Brand</mat-label>
+    <input matInput placeholder="Brand" />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Condition</mat-label>
+    <mat-select>
+      <mat-option value="good">Good</mat-option>
+      <mat-option value="under condition">Under Condition</mat-option>
+      <mat-option value="need exchange">Need Exchange</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-raised-button>Submit</button>
+</form>
+</div> -->
+
+<form
+  (submit)="
+    onSubmit(
+      deviceSelect.value,
+      serialNumber.value,
+      brand.value,
+      condition.value
+    )
+  "
+>
+  <mat-form-field>
+    <mat-label>Select Device</mat-label>
+    <mat-select #deviceSelect>
+      <mat-option *ngFor="let device of devices" [value]="device">
+        {{ device }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Enter Device Name</mat-label>
+    <input matInput placeholder=" Device Name" #deviceName />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Enter Serial Number</mat-label>
+    <input matInput placeholder="Serial Number" #serialNumber />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Enter Brand</mat-label>
+    <input matInput placeholder="Brand" #brand />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Condition</mat-label>
+    <mat-select #condition>
+      <mat-option value="good">Good</mat-option>
+      <mat-option value="under condition">Under Condition</mat-option>
+      <mat-option value="need exchange">Need Exchange</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button type="submit" mat-raised-button>submit</button>
+</form>
