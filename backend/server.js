@@ -45,9 +45,9 @@ app.post('/api/device', (req, res) => {
       } else {
         const inventoryId = results[0].Inventory_ID;
   
-        const insertQuery = `INSERT INTO monitor_info (Inventory_ID, Devices, Monitor_Name, Serial_No, Brand, \`Condition\`) 
-                            VALUES (?, ?, ?, ?, ?, ?)`;
-        const values = [inventoryId, deviceName, deviceName, serialNumber, brand, condition];
+        const insertQuery = `INSERT INTO monitor_info (Inventory_ID, Monitor_Name, Serial_No, Brand, \`Condition\`) 
+                            VALUES ( ?, ?, ?, ?, ?)`;
+        const values = [inventoryId, deviceName, serialNumber, brand, condition];
   
         db.query(insertQuery, values, (err, results) => {
           if (err) {
