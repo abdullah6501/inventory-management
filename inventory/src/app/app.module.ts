@@ -11,13 +11,15 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { DeviceService } from './services/device.service';
+import { ConnectionComponent } from './connection/connection.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidenavComponent,
     AdditemComponent,
-    PortfolioComponent
+    PortfolioComponent,
+    ConnectionComponent
   ],
   imports: [
     BrowserModule,

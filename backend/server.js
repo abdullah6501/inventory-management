@@ -23,7 +23,7 @@ db.connect((err) => {
 app.use(bodyParser.json());
 app.use(cors());
 
-// Route to fetch dropdown values from MySQL
+// fetching inventory id and device
 app.get('/devices', (req, res) => {
   const sql = 'SELECT Inventory_ID,Devices FROM inventory_info'; 
   db.query(sql, (err, result) => {
@@ -32,34 +32,86 @@ app.get('/devices', (req, res) => {
   });
 });
 
-// API endpoint to add monitor data
+
+//adding the device details
 app.post('/api/device', (req, res) => {
-    const { deviceName, serialNumber, brand, condition } = req.body;
-  
-    // Fetch Inventory_ID from inventory_info table based on deviceName
-    const query = `SELECT Inventory_ID FROM inventory_info WHERE Devices = '${deviceName}'`;
-  
-    db.query(query, (err, results) => {
+  const { deviceSelect, deviceName, serialNumber, brand, condition } = req.body;
+
+  if (!deviceSelect || !deviceName || !serialNumber || !brand || !condition) {
+    return res.status(400).json('Missing required fields');
+  }
+
+  const query = 'SELECT Inventory_ID FROM inventory_info WHERE Devices = ?';
+  db.query(query, [deviceSelect], (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json('Error fetching Inventory_ID');
+    }
+    if (results.length === 0) {
+      return res.status(404).json('No inventory found for the selected device');
+    }
+
+    const inventoryId = results[0].Inventory_ID;
+
+    const insertQuery = 'INSERT INTO monitor_info (Inventory_ID, Devices, Monitor_Name, Serial_No, Brand, `Condition`) VALUES (?, ?, ?, ?, ?, ?)';
+    const values = [inventoryId, deviceSelect, deviceName, serialNumber, brand, condition];
+
+    db.query(insertQuery, values, (err, results) => {
       if (err) {
-        res.status(500).send('Error fetching Inventory_ID');
-      } else {
-        const inventoryId = results[0].Inventory_ID;
-  
-        const insertQuery = `INSERT INTO monitor_info (Inventory_ID, Monitor_Name, Serial_No, Brand, \`Condition\`) 
-                            VALUES ( ?, ?, ?, ?, ?)`;
-        const values = [inventoryId, deviceName, serialNumber, brand, condition];
-  
-        db.query(insertQuery, values, (err, results) => {
-          if (err) {
-            console.error(err);
-            res.status(500).send('Error inserting data');
-          } else {
-            res.status(200).send('Data inserted successfully');
-          }
-        });
+        console.error(err);
+        return res.status(500).json('Error inserting data');
       }
+      return res.status(200).json('Data inserted successfully');
     });
   });
+});
+
+//fetching  employee name
+app.get('/api/employee', (req, res) => {
+  const query = `SELECT Emp_Name FROM name`;
+
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error('Error fetching employee:', err);
+      res.status(500).json({ error: 'Internal server error' });
+      return;
+    }
+    res.json(results);
+    // console.log(results);
+  });
+});
+
+// fetching device and monitor name for mapping
+
+app.get('/api/monitor_info', (req, res) => {
+  const query = 'SELECT Devices, Monitor_Name FROM monitor_info';
+
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error('Error fetching monitor info:', err);
+      res.status(500).json({ error: 'Internal server error' });
+      return;
+    }
+    res.json(results);
+  });
+});
+
+
+//fetching desk
+app.get('/api/desk', (req, res) => {
+  const query = `SELECT desk_name FROM desk`;
+
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error('Error fetching employee:', err);
+      res.status(500).json({ error: 'Internal server error' });
+      return;
+    }
+    res.json(results);
+    // console.log(results);
+  });
+});
+
 
 
 app.listen(port, () => {

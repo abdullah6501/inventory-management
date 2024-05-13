@@ -1,0 +1,25 @@
+.list{
+    position: absolute;
+    left: 80%;
+}
+
+.desk{
+    position: absolute;
+    top: 600px;
+    left: 100px;
+}
+
+.device{
+    position: absolute;
+    left: 100px;
+    top: 50px;
+    /* padding: 10px; */
+    display: flex;
+    gap: 20px;
+}
+
+.button{
+    position: absolute;
+    top: 610px;
+    left: 800px;
+}
