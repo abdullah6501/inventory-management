@@ -3,6 +3,8 @@ import { DeviceService } from '../services/device.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environment/envirinment';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-additem',
@@ -16,7 +18,12 @@ export class AdditemComponent implements OnInit, OnDestroy {
   devices: any[] = [];
   private deviceSubscription: Subscription | undefined;
 
-  constructor(private deviceService: DeviceService, private http: HttpClient) { }
+  connection() {
+    // Navigate to the dashboard component
+    this.router.navigate(['/connection']);
+  }
+
+  constructor(private deviceService: DeviceService, private router: Router, private http: HttpClient) { }
 
   ngOnInit(): void {
     this.deviceSubscription = this.deviceService.getDevices().subscribe({

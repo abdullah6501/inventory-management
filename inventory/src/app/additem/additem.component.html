@@ -1,3 +1,9 @@
+<div class="button">
+  <button mat-raised-button color="primary" (click)="connection()">
+    Connection
+  </button>
+</div>
+
 <div class="list">
   <form
     (submit)="
@@ -18,26 +24,33 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+    <br />
     <mat-form-field appearance="fill">
       <mat-label>Enter Device Name</mat-label>
-      <input matInput placeholder=" Device Name" #deviceName />
-    </mat-form-field>
+      <input matInput placeholder=" Device Name" #deviceName /> </mat-form-field
+    ><br />
     <mat-form-field appearance="fill">
       <mat-label>Enter Serial Number</mat-label>
-      <input matInput placeholder="Serial Number" #serialNumber />
-    </mat-form-field>
+      <input
+        matInput
+        placeholder="Serial Number"
+        #serialNumber
+      /> </mat-form-field
+    ><br />
     <mat-form-field appearance="fill">
       <mat-label>Enter Brand</mat-label>
-      <input matInput placeholder="Brand" #brand />
-    </mat-form-field>
+      <input matInput placeholder="Brand" #brand /> </mat-form-field
+    ><br />
     <mat-form-field appearance="fill">
       <mat-label>Condition</mat-label>
       <mat-select #condition>
         <mat-option value="good">Good</mat-option>
         <mat-option value="under condition">Under Condition</mat-option>
         <mat-option value="need exchange">Need Exchange</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <button type="submit" mat-raised-button>submit</button>
+      </mat-select> </mat-form-field
+    ><br />
+    <button id="butt" type="submit" mat-raised-button color="primary">
+      submit
+    </button>
   </form>
 </div>

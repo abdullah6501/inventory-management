@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { DeviceService } from './services/device.service';
 import { ConnectionComponent } from './connection/connection.component';
+import { NewitemComponent } from './newitem/newitem.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ConnectionComponent } from './connection/connection.component';
     SidenavComponent,
     AdditemComponent,
     PortfolioComponent,
-    ConnectionComponent
+    ConnectionComponent,
+    NewitemComponent
   ],
   imports: [
     BrowserModule,

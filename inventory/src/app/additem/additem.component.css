@@ -1,5 +1,24 @@
+.button{
+    position: absolute;
+    left: 950px;
+    top: 30px;
+}
+
 .list{
+    position: absolute;
+    left: 850px;
+    top: 140px;
     display: flex;
     gap: 10px;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+}
+
+#butt{
+    position: absolute;
+    left: 120px;
+    top: 430px;
+}
+
+mat-form-field{
+    width: 300px;
 }
