@@ -24,6 +24,31 @@ db.connect((err) => {
 app.use(bodyParser.json());
 app.use(cors());
 
+//fetch desk and employee
+// app.get('/desk', (req, res) => {
+//   const query = 'SELECT * FROM resource_to_desk';
+//   db.query(query, (error, results, fields) => {
+//     if (error) {
+//       console.error('Error querying database: ' + error.stack);
+//       res.status(500).send('Error querying database');
+//       return;
+//     }
+//     res.json(results);
+//   });
+// });
+
+//fetch desk and device data from database
+app.get('/data', (req, res) => {
+  const query = 'SELECT desk_to_sys.*, resource_to_desk.Emp_name FROM desk_to_sys INNER JOIN resource_to_desk ON desk_to_sys.desk = resource_to_desk.desk;';
+  db.query(query, (error, results, fields) => {
+    if (error) {
+      console.error('Error querying database: ' + error.stack);
+      res.status(500).send('Error querying database');
+      return;
+    }
+    res.json(results);
+  });
+});
 
 app.post('/api/save', (req, res) => {
   const { employee, monitor, mouse, bag, wooden_pedestral, cpu, head_phone, key_board, voip_ip_phone, water_bottle, web_camera, desk } = req.body;

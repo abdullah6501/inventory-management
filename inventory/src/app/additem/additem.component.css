@@ -22,3 +22,9 @@
 mat-form-field{
     width: 300px;
 }
+
+#data{
+    position: absolute;
+    left: 230px;
+    top: 30px;
+}

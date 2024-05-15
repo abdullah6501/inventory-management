@@ -1,0 +1,32 @@
+table{
+    /* border: 1px ridge black; */
+    position: absolute;
+    left: 45px;
+    top: 100px;
+    font-size: 16px;
+    font-family: cursive;
+    /* padding: 10px; */
+}
+/* th{
+    border: 1px ridge black;
+
+} */
+th,td{
+    border: 1px groove grey;
+}
+
+#color{
+    background-color: white;
+}
+
+#edit{
+    position: absolute;
+    left: 93%;
+    top: 65px;
+}
+
+#next{
+    position: absolute;
+    left: 45%;
+    top: 20px;
+}

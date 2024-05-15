@@ -13,6 +13,8 @@ import { FormsModule } from '@angular/forms';
 import { DeviceService } from './services/device.service';
 import { ConnectionComponent } from './connection/connection.component';
 import { NewitemComponent } from './newitem/newitem.component';
+import { ReadComponent } from './read/read.component';
+import { ReaddeskComponent } from './readdesk/readdesk.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { NewitemComponent } from './newitem/newitem.component';
     AdditemComponent,
     PortfolioComponent,
     ConnectionComponent,
-    NewitemComponent
+    NewitemComponent,
+    ReadComponent,
+    ReaddeskComponent
   ],
   imports: [
     BrowserModule,

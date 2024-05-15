@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { environment } from 'src/environment/envirinment';
 
 @Component({
@@ -8,9 +9,6 @@ import { environment } from 'src/environment/envirinment';
   styleUrls: ['./connection.component.css']
 })
 export class ConnectionComponent implements OnInit {
-  onDeviceSelect() {
-    throw new Error('Method not implemented.');
-  }
 
   public apiUrl = environment.INVENTORY_BASEURL;
 
@@ -35,7 +33,12 @@ export class ConnectionComponent implements OnInit {
   deskValues: any[] = [];
   selectedDeskValue: any;
 
-  constructor(private http: HttpClient) { }
+  goBack() {
+    // Navigate to the dashboard component
+    this.router.navigate(['/additem']);
+  }
+
+  constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
     this.fetchData();
@@ -72,93 +75,71 @@ export class ConnectionComponent implements OnInit {
     this.selectedDeskValue = '';
   }
 
-  // storeInArray() {
-  //   if (this.selectedList && !this.selectedItems.includes(this.selectedList)) {
-  //     this.selectedItems.push(this.selectedList);
-  //     console.log('Item stored in array:', this.selectedList);
-  //   }
-  // }
   storeInArray() {
     if (this.selectedList && !this.selectedItems.includes(this.selectedList)) {
       this.selectedItems.push(this.selectedList);
       console.log('Item stored in array:', this.selectedList);
-      console.log('Selected Items:', this.selectedItems); // Add this line for debugging
     }
   }
+
   sendToDatabase() {
-    if (this.selectedItems && this.selectedItems.length > 0) {
-      // Construct the data object including selectedItems
-      const data = {
-        employee: this.selectedValue ? this.selectedValue.Emp_Name : '',
-        desk: this.selectedDeskValue ? this.selectedDeskValue.desk_name : '',
-        monitor: this.selectedMonitor || null,
-        mouse: this.selectedMouse || null,
-        key_board: this.selectedKeyBoard || null,
-        voip_ip_phone: this.selectedVoipIpPhone || null,
-        bag: this.selectedBag || null,
-        wooden_pedestral: this.selectedWoodenPedestral || null,
-        cpu: this.selectedCpu || null,
-        head_phone: this.selectedHeadPhone || null,
-        water_bottle: this.selectedWaterBottle || null,
-        web_camera: this.selectedWebCamera || null,
-        selectedItems: this.selectedItems // Include selectedItems array
-      };
-
-      // Send data to the backend
-      const url = `${this.apiUrl}/api/save`;
-      this.http.post(url, data).subscribe({
-        next: (response) => {
-          console.log('Data saved successfully:', response);
-        },
-        error: (err) => {
-          console.error('Error saving data:', err);
-        }
-      });
-    } else {
-      console.log('No selected items to save.');
-    }
+    const url = `${this.apiUrl}/api/save`;
+    const data = {
+      employee: this.selectedValue ? this.selectedValue.Emp_Name : '',
+      desk: this.selectedDeskValue ? this.selectedDeskValue.desk_name : '',
+      monitor: this.selectedMonitor || null,
+      mouse: this.selectedMouse || null,
+      key_board: this.selectedKeyBoard || null,
+      voip_ip_phone: this.selectedVoipIpPhone || null,
+      bag: this.selectedBag || null,
+      wooden_pedestral: this.selectedWoodenPedestral || null,
+      cpu: this.selectedCpu || null,
+      head_phone: this.selectedHeadPhone || null,
+      water_bottle: this.selectedWaterBottle || null,
+      web_camera: this.selectedWebCamera || null
+    };
+    this.http.post(url, data).subscribe({
+      next: (response) => {
+        console.log('Data saved successfully:', response);
+      },
+      error: (err) => {
+        console.error('Error saving data:', err);
+      }
+    });
   }
 
+  onDeviceSelect() {
+    this.selectedList = '';
+  }
   // sendToDatabase() {
-  //   if (this.selectedItems && this.selectedItems.length > 0) {
-  //     // Add this line for debugging
-  //     const url = `${this.apiUrl}/api/save`;
-  //     const data = {
-  //       employee: this.selectedValue ? this.selectedValue.Emp_Name : '',
-  //       desk: this.selectedDeskValue ? this.selectedDeskValue.desk_name : '',
-  //       monitor: this.selectedMonitor || null,
-  //       mouse: this.selectedMouse || null,
-  //       key_board: this.selectedKeyBoard || null,
-  //       voip_ip_phone: this.selectedVoipIpPhone || null,
-  //       bag: this.selectedBag || null,
-  //       wooden_pedestral: this.selectedWoodenPedestral || null,
-  //       cpu: this.selectedCpu || null,
-  //       head_phone: this.selectedHeadPhone || null,
-  //       water_bottle: this.selectedWaterBottle || null,
-  //       web_camera: this.selectedWebCamera || null,
-
+  //   console.log('selectedList:', this.selectedList); // Add this line for debugging
+  //   const url = `${this.apiUrl}/api/save`;
+  //   const data = {
+  //     employee: this.selectedValue ? this.selectedValue.Emp_Name : '',
+  //     desk: this.selectedDeskValue ? this.selectedDeskValue.desk_name : '',
+  //     monitor: this.selectedMonitor || null,
+  //     mouse: this.selectedMouse || null,
+  //     key_board: this.selectedKeyBoard || null,
+  //     voip_ip_phone: this.selectedVoipIpPhone || null,
+  //     bag: this.selectedBag || null,
+  //     wooden_pedestral: this.selectedWoodenPedestral || null,
+  //     cpu: this.selectedCpu || null,
+  //     head_phone: this.selectedHeadPhone || null,
+  //     water_bottle: this.selectedWaterBottle || null,
+  //     web_camera: this.selectedWebCamera || null
+  //     // selectedList: this.selectedList // Include selectedList in data object
+  //   };
+  //   this.http.post(url, data).subscribe({
+  //     next: (response) => {
+  //       console.log('Data saved successfully:', response);
+  //     },
+  //     error: (err) => {
+  //       console.error('Error saving data:', err);
   //     }
+  //   });
+  // }
 
-
-
-  //     this.http.post(url, data).subscribe({
-  //       next: (response) => {
-  //         console.log('Data saved successfully:', response);
-  //       },
-  //       error: (err) => {
-  //         console.error('Error saving data:', err);
-  //       }
-  //     });
-
-  //   }
-  //   else {
-  //     console.log('No selected items to save.'); // Log an error if no items are selected
-  //   }
-
-
-}
-
-
-function onDeviceSelect() {
-  throw new Error('Function not implemented.');
+  // onDeviceSelect() {
+  //   this.selectedList = '';
+  // }
 }

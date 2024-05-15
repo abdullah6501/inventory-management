@@ -1,0 +1,44 @@
+<!-- <h1>Desk Data</h1> -->
+<button mat-raised-button color="primary" (click)="goBack()">
+  <mat-icon>west</mat-icon>
+</button>
+<button id="edit" mat-button>
+  <mat-icon>mode_edit</mat-icon>
+</button>
+<!-- <button mat-raised-button color="primary" id="next" (click)="goDesk()">
+  Desk to Resource
+</button> -->
+<table style="border: 1px groove grey">
+  <thead>
+    <tr>
+      <th>Employee Name</th>
+      <th>Desk</th>
+      <th>Monitor</th>
+      <th>Mouse</th>
+      <th>CPU</th>
+      <th>key Board</th>
+      <th>VOIP IP Phone</th>
+      <th>Wooden Pedestal</th>
+      <th>Water Bottle</th>
+      <th>Bag</th>
+      <th>Web Camera</th>
+      <th>Head Phone</th>
+    </tr>
+  </thead>
+  <tbody id="color">
+    <tr *ngFor="let item of deskData">
+      <td>{{ item.Emp_name }}</td>
+      <td>{{ item.desk }}</td>
+      <td>{{ item.monitor }}</td>
+      <td>{{ item.mouse }}</td>
+      <td>{{ item.CPU }}</td>
+      <td>{{ item.key_board }}</td>
+      <td>{{ item.VOIP_IP_Phone }}</td>
+      <td>{{ item.Wooden_Pedestral }}</td>
+      <td>{{ item.Water_Bottle }}</td>
+      <td>{{ item.Bag }}</td>
+      <td>{{ item.web_camera }}</td>
+      <td>{{ item.Head_phone }}</td>
+    </tr>
+  </tbody>
+</table>
