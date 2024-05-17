@@ -5,6 +5,7 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
 import { ConnectionComponent } from './connection/connection.component';
 import { ReadComponent } from './read/read.component';
 import { ReaddeskComponent } from './readdesk/readdesk.component';
+import { NewitemComponent } from './newitem/newitem.component';
 
 
 const routes: Routes = [
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'portfolio', component: PortfolioComponent },
   { path: 'connection', component: ConnectionComponent },
   { path: 'read', component: ReadComponent },
-  { path: 'readdesk', component: ReaddeskComponent }
+  { path: 'readdesk', component: ReaddeskComponent },
+  { path: 'newitem', component: NewitemComponent }
 ];
 
 @NgModule({

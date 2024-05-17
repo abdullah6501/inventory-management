@@ -1,1 +1,24 @@
-<p>newitem works!</p>
+<!-- <button mat-button (click)="goBack()">
+  <mat-icon>west</mat-icon>
+</button>
+
+<mat-form-field class="add">
+  <mat-label>New Device</mat-label>
+  <input matInput placeholder="Device" />
+</mat-form-field>
+<button id="butt" type="submit" mat-raised-button color="primary">
+  submit
+</button> -->
+
+<button mat-button (click)="goBack()">
+    <mat-icon>west</mat-icon>
+  </button>
+  
+  <mat-form-field class="add">
+    <mat-label>New Device</mat-label>
+    <input matInput placeholder="Device" [(ngModel)]="newDevice" />
+  </mat-form-field>
+  <button id="butt" type="submit" mat-raised-button color="primary" (click)="submitDevice()">
+    Submit
+  </button>
+  

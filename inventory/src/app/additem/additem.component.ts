@@ -27,6 +27,10 @@ export class AdditemComponent implements OnInit, OnDestroy {
     this.router.navigate(['/read']);
   }
 
+  goNew() {
+    this.router.navigate(['/newitem']);
+  }
+
   constructor(private deviceService: DeviceService, private router: Router, private http: HttpClient) { }
 
   ngOnInit(): void {

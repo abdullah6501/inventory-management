@@ -15,6 +15,8 @@ import { ConnectionComponent } from './connection/connection.component';
 import { NewitemComponent } from './newitem/newitem.component';
 import { ReadComponent } from './read/read.component';
 import { ReaddeskComponent } from './readdesk/readdesk.component';
+import { EditComponent } from './edit/edit.component';
+// import { DataService } from './services/data.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { ReaddeskComponent } from './readdesk/readdesk.component';
     ConnectionComponent,
     NewitemComponent,
     ReadComponent,
-    ReaddeskComponent
+    ReaddeskComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,

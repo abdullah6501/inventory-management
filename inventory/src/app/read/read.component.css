@@ -1,7 +1,7 @@
 table{
     /* border: 1px ridge black; */
     position: absolute;
-    left: 45px;
+    left: 15px;
     top: 100px;
     font-size: 16px;
     font-family: cursive;
@@ -30,3 +30,49 @@ th,td{
     left: 45%;
     top: 20px;
 }
+
+input{
+    /* width: 50px; */
+    padding: 20px;
+}
+
+.modal-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 999; /* Ensure modal is on top */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal {
+    position: absolute;
+    /* top: 150px; */
+    /* left: 40%; */
+    background-color: white;
+    /* padding: 20px; */
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* .modal-content {
+    Styles for modal content
+  } */
+  
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
+  
+  .blur-background {
+    filter: blur(100px); /* Adjust blur strength as needed */
+  }
+  

@@ -24,6 +24,89 @@ db.connect((err) => {
 app.use(bodyParser.json());
 app.use(cors());
 
+
+app.post('/add/list', (req, res) => {
+  const { device } = req.body;
+  if (!device) {
+    return res.status(400).send('Device name is required');
+  }
+
+  const query = 'INSERT INTO inventory_info (Devices, Count) VALUES (?, ?)';
+  db.query(query, [device, 0], (err, result) => {
+    if (err) {
+      console.error('Error inserting device into inventory_info:', err);
+      return res.status(500).send('Server error');
+    }
+    res.send({ message: 'Device added to inventory_info successfully' });
+  });
+});
+
+
+app.put('/update', (req, res) => {
+  const updatedEmployeeDetails = req.body;
+
+  const desk = updatedEmployeeDetails.desk;
+
+  const updateDeskDetailsSql = `UPDATE desk_to_sys SET 
+    monitor = ?, 
+    mouse = ?, 
+    CPU = ?, 
+    key_board = ?, 
+    VOIP_IP_Phone = ?, 
+    Wooden_Pedestral = ?, 
+    Water_Bottle = ?, 
+    Bag = ?, 
+    web_camera = ?, 
+    Head_phone = ?
+    WHERE desk = ?`;
+
+  const deskDetailsValues = [
+    updatedEmployeeDetails.monitor,
+    updatedEmployeeDetails.mouse,
+    updatedEmployeeDetails.CPU,
+    updatedEmployeeDetails.key_board,
+    updatedEmployeeDetails.VOIP_IP_Phone,
+    updatedEmployeeDetails.Wooden_Pedestral,
+    updatedEmployeeDetails.Water_Bottle,
+    updatedEmployeeDetails.Bag,
+    updatedEmployeeDetails.web_camera,
+    updatedEmployeeDetails.Head_phone,
+    desk
+  ];
+
+  db.query(updateDeskDetailsSql, deskDetailsValues, (err, result) => {
+    if (err) {
+      console.error('Error updating desk hardware details:', err);
+      return res.status(500).json({ error: 'Error updating desk hardware details' });
+    }
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: 'Desk not found' });
+    }
+
+    const updatedEmployee = {
+      Emp_name: updatedEmployeeDetails.Emp_name,
+      desk: desk
+    };
+
+    const updateEmployeeSql = `UPDATE resource_to_desk SET Emp_name = ? WHERE desk = ?`;
+
+    db.query(updateEmployeeSql, [updatedEmployee.Emp_name, updatedEmployee.desk], (err, result) => {
+      if (err) {
+        console.error('Error updating employee assigned to desk:', err);
+        return res.status(500).json({ error: 'Error updating employee assigned to desk' });
+      }
+
+      if (result.affectedRows === 0) {
+        return res.status(404).json({ error: 'Desk not found' });
+      }
+
+      res.json({ message: 'Employee details and desk hardware details updated successfully' });
+    });
+  });
+});
+
+
 //fetch desk and employee
 // app.get('/desk', (req, res) => {
 //   const query = 'SELECT * FROM resource_to_desk';
@@ -37,6 +120,7 @@ app.use(cors());
 //   });
 // });
 
+
 //fetch desk and device data from database
 app.get('/data', (req, res) => {
   const query = 'SELECT desk_to_sys.*, resource_to_desk.Emp_name FROM desk_to_sys INNER JOIN resource_to_desk ON desk_to_sys.desk = resource_to_desk.desk;';
@@ -49,6 +133,7 @@ app.get('/data', (req, res) => {
     res.json(results);
   });
 });
+
 
 app.post('/api/save', (req, res) => {
   const { employee, monitor, mouse, bag, wooden_pedestral, cpu, head_phone, key_board, voip_ip_phone, water_bottle, web_camera, desk } = req.body;
@@ -176,7 +261,6 @@ app.get('/api/employee', (req, res) => {
 });
 
 // fetching device and monitor name for mapping
-
 app.get('/api/monitor_info', (req, res) => {
   const query = 'SELECT Devices, Monitor_Name FROM monitor_info';
 
