@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { environment } from 'src/environment/envirinment';
 
@@ -40,7 +41,7 @@ export class ConnectionComponent implements OnInit {
     this.router.navigate(['/additem']);
   }
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.fetchData();
@@ -110,8 +111,18 @@ export class ConnectionComponent implements OnInit {
     this.http.post(url, payload).subscribe({
       next: (response) => {
         console.log('Data saved successfully:', response);
+        this.snackBar.open('Data saved successfully!', 'Close', {
+          duration: 3000,
+          verticalPosition: 'bottom',
+          horizontalPosition: 'right'
+        });
       }, error: (err) => {
         console.error('Error saving data:', err);
+        this.snackBar.open('Failed to add Data.', 'Close', {
+          duration: 3000,
+          verticalPosition: 'bottom',
+          horizontalPosition: 'right'
+        });
       }
     });
   }

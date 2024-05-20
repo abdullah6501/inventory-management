@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environment/envirinment';
+import { trigger, state, style, transition, animate } from '@angular/animations';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 interface Employee {
   Emp_name: string;
@@ -21,128 +23,129 @@ interface Employee {
 @Component({
   selector: 'app-read',
   templateUrl: './read.component.html',
-  styleUrls: ['./read.component.css']
+  styleUrls: ['./read.component.css'],
+  animations: [
+    trigger('slideInOut', [
+      state('in', style({
+        right: '0'
+      })),
+      state('out', style({
+        right: '-100%'
+      })),
+      transition('out => in', [
+        animate('0.5s ease-in-out')
+      ]),
+      transition('in => out', [
+        animate('0.5s ease-in-out')
+      ])
+    ])
+  ]
 })
 export class ReadComponent implements OnInit {
 
   public apiUrl = environment.INVENTORY_BASEURL;
 
-  // deskData: any[] = [];
   deskData: Employee[] = [];
+  filteredDeskData: Employee[] = [];
   selectedEmployee: Employee | null = null;
-  // desksData: any[] = [];
-  // selectedEmployee: any = null;
-  editingIndex: number | null = null;
+  animationState: string = 'out';
+  searchTerm: string = '';
+  searchType: 'Emp_name' | 'desk' = 'Emp_name';
 
   goBack() {
-    // Navigate to the dashboard component
     this.router.navigate(['/additem']);
   }
   goDesk() {
-    // Navigate to the dashboard component
     this.router.navigate(['/readdesk']);
   }
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.fetchDeskData();
   }
 
+  // fetchDeskData() {
+  //   const url = `${this.apiUrl}/data`;
+  //   this.http.get<Employee[]>(url).subscribe(data => {
+  //     this.deskData = data;
+  //   });
+  // }
+
+  // filterEmployees() {
+  //   const url = `${this.apiUrl}/datass`;
+  //   const params: any = {};
+  //   if (this.searchTerm) {
+  //     params[this.searchType] = this.searchTerm;
+  //   }
+  //   this.http.get<Employee[]>(url, { params }).subscribe(data => {
+  //     this.filteredDeskData = data;
+  //   });
+  // }
+
+  // editEmployee(index: number) {
+  //   this.selectedEmployee = { ...this.deskData[index] };
+  //   this.animationState = 'in';
+  //   document.body.classList.add('blur-background');
+  // }
+
+  // closeModal() {
+  //   this.selectedEmployee = null;
+  //   this.animationState = 'out';
+  //   document.body.classList.remove('blur-background');
+  // }
+
   fetchDeskData() {
     const url = `${this.apiUrl}/data`;
     this.http.get<Employee[]>(url).subscribe(data => {
       this.deskData = data;
+      this.filteredDeskData = data;
     });
   }
 
-  // editEmployee(employee: Employee | number) {
-  //   if (typeof employee === 'number') {
-  //     // Find the employee object by index or ID
-  //     this.selectedEmployee = this.deskData[employee];
-  //   } else {
-  //     // If an Employee object is passed directly
-  //     this.selectedEmployee = { ...employee }; // Create a copy to avoid changing the original data directly
-  //   }
-  //   document.body.classList.add('blur-background'); // Apply blur effect to background
-  // }
+  filterEmployees() {
+    const url = `${this.apiUrl}/data`;
+    const params: any = {};
+    if (this.searchTerm) {
+      params[this.searchType] = this.searchTerm;
+    }
+    this.http.get<Employee[]>(url, { params }).subscribe(data => {
+      this.filteredDeskData = data;
+    });
+  }
 
   editEmployee(index: number) {
-    this.selectedEmployee = { ...this.deskData[index] };
+    this.selectedEmployee = { ...this.filteredDeskData[index] };
+    this.animationState = 'in';
     document.body.classList.add('blur-background');
   }
 
-
-  // editEmployee(employee: Employee) {
-  //   this.selectedEmployee = { ...employee }; // Create a copy to avoid changing the original data directly
-  //   document.body.classList.add('blur-background'); // Apply blur effect to background
-  // }
-  // editEmployee(employee: any) {
-  //   this.selectedEmployee = { ...employee }; // Create a copy to avoid changing the original data directly
-  // }
-
   closeModal() {
     this.selectedEmployee = null;
-    document.body.classList.remove('blur-background'); // Remove blur effect from background
+    this.animationState = 'out';
+    document.body.classList.remove('blur-background');
   }
-
-  // saveChanges() {
-  //   if (this.selectedEmployee) {
-  //     const url = `${this.apiUrl}/update`;
-  //     this.http.put(url, this.selectedEmployee).subscribe(response => {
-  //       // Handle response if needed
-  //       console.log("Employee details updated successfully!");
-  //       this.closeModal(); // Close the modal after saving changes
-  //     });
-  //   }
-  // }
 
   saveChanges() {
     if (this.selectedEmployee) {
-      const url = `${this.apiUrl}/update`; // Ensure this is the correct endpoint
+      const url = `${this.apiUrl}/update`;
       this.http.put(url, this.selectedEmployee).subscribe(response => {
         console.log("Employee details updated successfully!", response);
-        this.closeModal(); // Close the modal after saving changes
+        this.snackBar.open('Device details updated successfully!', 'Close', {
+          duration: 3000,
+          verticalPosition: 'bottom',
+          horizontalPosition: 'right'
+        });
+        this.fetchDeskData();
+        this.closeModal();
       }, error => {
         console.error("Error updating employee details:", error);
+        this.snackBar.open('Failed to update device details.', 'Close', {
+          duration: 3000,
+          verticalPosition: 'bottom',
+          horizontalPosition: 'right'
+        });
       });
     }
   }
-
-
-  // closeModal() {
-  //   this.selectedEmployee = null;
-  // }
-
-  // saveChanges() {
-  //   if (this.selectedEmployee) {
-  //     const url = `${this.apiUrl}/update`;
-  //     this.http.put(url, this.selectedEmployee).subscribe(response => {
-  //       // Handle response if needed
-  //       console.log("Employee details updated successfully!");
-  //       this.closeModal(); // Close the modal after saving changes
-  //     });
-  //   }
-  // }
-
-  // saveChanges() {
-  //   if (this.editingIndex !== null) {
-  //     // Send HTTP request to update the employee details in backend
-  //     const updatedEmployee = this.deskData[this.editingIndex];
-  //     const url = `${this.apiUrl}/update/${updatedEmployee.Emp_name}`; // Assuming there's an 'id' field
-  //     this.http.put(url, updatedEmployee).subscribe(() => {
-  //       // Update successful, reset editingIndex
-  //       this.editingIndex = null;
-  //     });
-  //   }
-  // }
-  // saveChanges() {
-  //   // Send HTTP request to update the employee details in backend
-  //   const updatedEmployee = this.deskData[this.editingIndex];
-  //   const url = `${this.apiUrl}/update/${updatedEmployee.id}`; // Assuming there's an 'id' field
-  //   this.http.put(url, updatedEmployee).subscribe(() => {
-  //     // Update successful, reset editingIndex
-  //     this.editingIndex = null;
-  //   });
-  // }
 }

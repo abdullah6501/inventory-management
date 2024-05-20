@@ -1,78 +1,122 @@
-table{
-    /* border: 1px ridge black; */
-    position: absolute;
-    left: 15px;
-    top: 100px;
-    font-size: 16px;
-    font-family: cursive;
-    /* padding: 10px; */
+table {
+  /* border: 1px ridge black; */
+  position: absolute;
+  left: 15px;
+  top: 100px;
+  font-size: 16px;
+  font-family: cursive;
+  /* padding: 10px; */
 }
-/* th{
-    border: 1px ridge black;
 
+th,
+td {
+  border: 1px groove grey;
+}
+
+#color {
+  background-color: white;
+}
+
+#edit {
+  position: absolute;
+  left: 93%;
+  top: 65px;
+}
+
+#next {
+  position: absolute;
+  left: 45%;
+  top: 20px;
+}
+
+input {
+  /* width: 50px; */
+  padding: 20px;
+}
+
+/* .modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; */
+/* background-color: rgba(0, 0, 0, 0.5); Semi-transparent background */
+/* z-index: 999; Ensure modal is on top */
+/* display: flex;
+  justify-content: center;
+  align-items: center;
 } */
-th,td{
-    border: 1px groove grey;
+
+.modal {
+  position: fixed;
+  top: 0;
+  right: -500%;
+  width: 500px;
+  height: 100%;
+  background-color: #f1f1f1;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+  transition: right 0.3s ease;
 }
 
-#color{
-    background-color: white;
+.modal-content {
+  padding: 20px;
 }
 
-#edit{
-    position: absolute;
-    left: 93%;
-    top: 65px;
+.modal.show {
+  right: 0;
 }
 
-#next{
-    position: absolute;
-    left: 45%;
-    top: 20px;
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
 }
 
-input{
-    /* width: 50px; */
-    padding: 20px;
+.blur-background {
+  filter: blur(5px);
 }
 
-.modal-wrapper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    z-index: 999; /* Ensure modal is on top */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .modal {
-    position: absolute;
-    /* top: 150px; */
-    /* left: 40%; */
-    background-color: white;
-    /* padding: 20px; */
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
-    width: 100%;
-    height: 100%;
-  }
-  
-  /* .modal-content {
-    Styles for modal content
-  } */
-  
-  .close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-  }
-  
-  .blur-background {
-    filter: blur(100px); /* Adjust blur strength as needed */
-  }
-  
+.editsub {
+  position: relative;
+  right: -130px;
+  top: 820px;
+}
+
+.table-content {
+  position: absolute;
+  left: 70px;
+}
+
+h2 {
+  position: relative;
+  left: 140px;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+select {
+  margin-right: 10px;
+  width: 200px;
+  border: none;
+  border-bottom: 1px ridge grey;
+  /* border-left: 1px ridge grey; */
+  height: 46px;
+  box-shadow: -2px 0 5px rgba(214, 209, 209, 0.3);
+  /* border-radius: 5px; */
+}
+input {
+  width: 200px;
+  height: 5px;
+  /* border-radius: 5px; */
+  border: none;
+  border-bottom: 1px ridge grey;
+  box-shadow: -2px 0 5px rgba(214, 209, 209, 0.3);
+}
+input:focus {
+  border: none;
+}

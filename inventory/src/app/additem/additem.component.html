@@ -1,7 +1,3 @@
-<button id="new" type="submit" mat-raised-button color="primary" (click)="goNew()">
-  Add New Device
-</button>
-
 <button
   id="data"
   mat-raised-button
@@ -58,7 +54,7 @@
       <mat-label>Condition</mat-label>
       <mat-select #condition>
         <mat-option value="good">Good</mat-option>
-        <mat-option value="under condition">Under Condition</mat-option>
+        <!-- <mat-option value="under condition">Under Condition</mat-option> -->
         <mat-option value="need exchange">Need Exchange</mat-option>
       </mat-select> </mat-form-field
     ><br />
@@ -67,3 +63,8 @@
     </button>
   </form>
 </div>
+
+<button id="new" type="submit" mat-raised-button (click)="goNew()">
+  +
+  <!-- <mat-icon>plus</mat-icon> -->
+</button>

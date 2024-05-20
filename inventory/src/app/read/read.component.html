@@ -1,13 +1,20 @@
-<!-- <h1>Desk Data</h1> -->
 <button mat-raised-button color="primary" (click)="goBack()">
   <mat-icon>west</mat-icon>
 </button>
-<!-- <button id="edit" mat-button>
-  <mat-icon>mode_edit</mat-icon>
-</button> -->
-<!-- <button mat-raised-button color="primary" id="next" (click)="goDesk()">
-  Desk to Resource
-</button> -->
+
+<div class="search-container">
+  <select [(ngModel)]="searchType">
+    <option value="Emp_name">Employee Name</option>
+    <option value="desk">Desk</option>
+  </select>
+  <input
+    type="text"
+    placeholder="Search"
+    [(ngModel)]="searchTerm"
+    (input)="filterEmployees()"
+  />
+</div>
+
 <table style="border: 1px groove grey">
   <thead>
     <tr>
@@ -16,7 +23,7 @@
       <th>Monitor</th>
       <th>Mouse</th>
       <th>CPU</th>
-      <th>key Board</th>
+      <th>Key Board</th>
       <th>VOIP IP Phone</th>
       <th>Wooden Pedestal</th>
       <th>Water Bottle</th>
@@ -27,7 +34,7 @@
     </tr>
   </thead>
   <tbody id="color">
-    <tr *ngFor="let item of deskData; let i = index">
+    <tr *ngFor="let item of filteredDeskData; let i = index">
       <td>{{ item.Emp_name }}</td>
       <td>{{ item.desk }}</td>
       <td>{{ item.monitor }}</td>
@@ -48,12 +55,13 @@
     </tr>
   </tbody>
 </table>
+
 <!-- Edit Employee Modal -->
-<div class="modal" *ngIf="selectedEmployee">
+<div class="modal" *ngIf="selectedEmployee" [@slideInOut]="'in'">
   <div class="modal-content">
     <span class="close" (click)="closeModal()">&times;</span>
     <h2>Edit Employee Details</h2>
-    <table>
+    <table class="table-content">
       <tr>
         <td>Employee Name:</td>
         <td>
@@ -175,67 +183,13 @@
         </td>
       </tr>
     </table>
-    <button mat-raised-button color="primary" (click)="saveChanges()">
+    <button
+      class="editsub"
+      mat-raised-button
+      color="primary"
+      (click)="saveChanges()"
+    >
       Save Changes
     </button>
   </div>
 </div>
-
-<!-- <div class="modal" *ngIf="selectedEmployee">
-  <div class="modal-content">
-    <span class="close" (click)="closeModal()">&times;</span>
-    <h2>Edit Employee Details</h2>
-    <input
-      type="text"
-      [(ngModel)]="selectedEmployee.Emp_name"
-      placeholder="Employee Name"
-    />
-    <input type="text" [(ngModel)]="selectedEmployee.desk" placeholder="Desk" />
-    <input
-      type="text"
-      [(ngModel)]="selectedEmployee.monitor"
-      placeholder="Monitor"
-    />
-    <input
-      type="text"
-      [(ngModel)]="selectedEmployee.mouse"
-      placeholder="Mouse"
-    />
-    <input type="text" [(ngModel)]="selectedEmployee.CPU" placeholder="Desk" />
-    <input
-      type="text"
-      [(ngModel)]="selectedEmployee.key_board"
-      placeholder="Monitor"
-    />
-    <input
-      type="text"
-      [(ngModel)]="selectedEmployee.VOIP_IP_Phone"
-      placeholder="Mouse"
-    />
-    <input
-      type="text"
-      [(ngModel)]="selectedEmployee.Wooden_Pedestral"
-      placeholder="Desk"
-    />
-    <input
-      type="text"
-      [(ngModel)]="selectedEmployee.Water_Bottle"
-      placeholder="Monitor"
-    />
-    <input type="text" [(ngModel)]="selectedEmployee.Bag" placeholder="Mouse" />
-    <input
-      type="text"
-      [(ngModel)]="selectedEmployee.web_camera"
-      placeholder="Mouse"
-    />
-    <input
-      type="text"
-      [(ngModel)]="selectedEmployee.Head_phone"
-      placeholder="Mouse"
-    />
-    <br />
-    <button mat-raised-button color="primary" (click)="saveChanges()">
-      Save Changes
-    </button>
-  </div>
-</div> -->

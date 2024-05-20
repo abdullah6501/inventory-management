@@ -17,6 +17,7 @@ import { ReadComponent } from './read/read.component';
 import { ReaddeskComponent } from './readdesk/readdesk.component';
 import { EditComponent } from './edit/edit.component';
 // import { DataService } from './services/data.service';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,10 @@ import { EditComponent } from './edit/edit.component';
   ],
   imports: [
     BrowserModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+      timeOut: 3000
+    }),
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,

@@ -24,6 +24,33 @@ db.connect((err) => {
 app.use(bodyParser.json());
 app.use(cors());
 
+app.get('/data', (req, res) => {
+  const empName = req.query.Emp_name;
+  const desk = req.query.desk;
+
+  let query = `
+    SELECT desk_to_sys.*, resource_to_desk.Emp_name 
+    FROM desk_to_sys 
+    INNER JOIN resource_to_desk ON desk_to_sys.desk = resource_to_desk.desk
+  `;
+
+  let queryParams = [];
+  if (empName) {
+    query += ' WHERE resource_to_desk.Emp_name LIKE ?';
+    queryParams.push(`%${empName}%`);
+  } else if (desk) {
+    query += ' WHERE desk_to_sys.desk LIKE ?';
+    queryParams.push(`%${desk}%`);
+  }
+
+  db.query(query, queryParams, (err, results) => {
+    if (err) {
+      console.error('Error executing query:', err);
+      return res.status(500).send(err);
+    }
+    res.json(results);
+  });
+});
 
 app.post('/api/save', (req, res) => {
   const { employee, desk, devices } = req.body;
@@ -163,7 +190,7 @@ app.put('/update', (req, res) => {
 
 //fetch desk and device data from database
 app.get('/data', (req, res) => {
-  const query = 'SELECT desk_to_sys.*, resource_to_desk.Emp_name FROM desk_to_sys INNER JOIN resource_to_desk ON desk_to_sys.desk = resource_to_desk.desk;';
+  const query = 'SELECT desk_to_sys.*, resource_to_desk.Emp_name FROM desk_to_sys INNER JOIN resource_to_desk ON desk_to_sys.desk = resource_to_desk.desk';
   db.query(query, (error, results, fields) => {
     if (error) {
       console.error('Error querying database: ' + error.stack);

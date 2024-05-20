@@ -1,30 +1,56 @@
-.button{
-    position: absolute;
-    left: 950px;
-    top: 30px;
+.button {
+  position: absolute;
+  left: 950px;
+  top: 30px;
 }
 
-.list{
-    position: absolute;
-    left: 850px;
-    top: 140px;
-    display: flex;
-    gap: 10px;
-    /* justify-content: space-between; */
+.list {
+  position: absolute;
+  left: 850px;
+  top: 140px;
+  display: flex;
+  gap: 10px;
+  /* justify-content: space-between; */
 }
 
-#butt{
-    position: absolute;
-    left: 120px;
-    top: 430px;
+#butt {
+  position: absolute;
+  left: 120px;
+  top: 430px;
 }
 
-mat-form-field{
-    width: 300px;
+mat-form-field {
+  width: 300px;
 }
 
-#data{
-    position: absolute;
-    left: 230px;
-    top: 30px;
+#data {
+  position: absolute;
+  left: 230px;
+  top: 30px;
+}
+#new {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: white;
+  position: absolute;
+  top: 700px;
+  left: 1000px;
+}
+
+#new:hover::after {
+  content: "Add Device";
+  position: absolute;
+  top: 130%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(43, 91, 223, 0.7);
+  color: rgb(255, 255, 255);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  white-space: nowrap;
+  transition: all 0.4ms ease; /* Adds a smooth transition effect */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 999; /* Ensures the edit text appears above other elements */
 }

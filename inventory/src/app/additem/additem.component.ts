@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environment/envirinment';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -19,7 +21,6 @@ export class AdditemComponent implements OnInit, OnDestroy {
   private deviceSubscription: Subscription | undefined;
 
   connection() {
-    // Navigate to the dashboard component
     this.router.navigate(['/connection']);
   }
 
@@ -31,7 +32,7 @@ export class AdditemComponent implements OnInit, OnDestroy {
     this.router.navigate(['/newitem']);
   }
 
-  constructor(private deviceService: DeviceService, private router: Router, private http: HttpClient) { }
+  constructor(private deviceService: DeviceService, private toastr: ToastrService, private router: Router, private http: HttpClient, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.deviceSubscription = this.deviceService.getDevices().subscribe({
@@ -40,7 +41,6 @@ export class AdditemComponent implements OnInit, OnDestroy {
       },
       error: error => {
         console.error(error);
-        // Handle error
       }
     });
   }
@@ -63,11 +63,21 @@ export class AdditemComponent implements OnInit, OnDestroy {
     this.http.post(url, formData, { responseType: 'text' }).subscribe({
       next: (response) => {
         console.log(response);
-        // Handle success (response contains the text message)
+        // this.toastr.success('Device added successfully!');
+        this.snackBar.open('Device added successfully!', 'Close', {
+          duration: 3000,
+          verticalPosition: 'bottom',
+          horizontalPosition: 'right'
+        });
       },
       error: (error) => {
         console.error(error);
-        // Handle error
+        // this.toastr.error('Failed to add device.');
+        this.snackBar.open('Failed to add device.', 'Close', {
+          duration: 3000,
+          verticalPosition: 'bottom',
+          horizontalPosition: 'right'
+        });
       }
     });
   }

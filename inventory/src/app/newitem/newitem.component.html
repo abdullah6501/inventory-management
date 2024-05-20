@@ -1,24 +1,24 @@
-<!-- <button mat-button (click)="goBack()">
+<button mat-raised-button color="primary" (click)="goBack()">
   <mat-icon>west</mat-icon>
 </button>
 
-<mat-form-field class="add">
-  <mat-label>New Device</mat-label>
-  <input matInput placeholder="Device" />
-</mat-form-field>
-<button id="butt" type="submit" mat-raised-button color="primary">
-  submit
-</button> -->
-
-<button mat-button (click)="goBack()">
-    <mat-icon>west</mat-icon>
-  </button>
-  
+<div class="box">
+  <h1>Add New Device</h1>
   <mat-form-field class="add">
     <mat-label>New Device</mat-label>
-    <input matInput placeholder="Device" [(ngModel)]="newDevice" />
-  </mat-form-field>
-  <button id="butt" type="submit" mat-raised-button color="primary" (click)="submitDevice()">
+    <input
+      matInput
+      placeholder="Device"
+      [(ngModel)]="newDevice"
+    /> </mat-form-field
+  ><br />
+  <button
+    id="butt"
+    type="submit"
+    mat-raised-button
+    color="primary"
+    (click)="submitDevice()"
+  >
     Submit
   </button>
-  
+</div>
