@@ -109,6 +109,8 @@ app.post('/add/list', (req, res) => {
 });
 
 
+
+
 app.put('/update', (req, res) => {
   const updatedEmployeeDetails = req.body;
 
@@ -240,34 +242,6 @@ app.get('/data', (req, res) => {
 // });
 
 
-
-
-
-// app.post('api/save', (req, res) => {
-//   const { employee, monitor, mouse, bag, wooden_pedestral, cpu, head_phone, key_board, voip_ip_phone, water_bottle, web_camera, desk } = req.body;
-
-//   const sql = 'INSERT INTO desk_to_sys ( monitor, mouse, Bag, Wooden_Pedestral, CPU, Head_phone, key_board, VOIP_IP_Phone, Water_Bottle, web_camera, desk) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );
-//   db.query(sql, [monitor, mouse, bag, wooden_pedestral, cpu, head_phone, key_board, voip_ip_phone, water_bottle, web_camera, desk], (err, result) => {
-//     if (err) {
-//       console.error('Error adding item:' err);
-//       res.status(500).json({ error: 'Error adding item' });
-//     }
-//     else {
-//       console.log('Item added successfully');
-//       res.json({ monitor, mouse, bag, wooden_pedestral, cpu, head_phone, key_board, voip_ip_phone, water_bottle, web_camera, desk });
-//     });
-
-//   const sql1 = 'INSERT INTO resource_to_sys (desk, Emp_name) VALUES (?, ?)';
-//   db.query(sql1, [desk, employee], (err, result) => {
-//     if (err) {
-//       console.error('Error adding item:' err);
-//       res.status(500).json({ error: 'Error adding item' });
-//     }
-//     else {
-//       console.log('Item added successfully');
-//       res.json({ desk, employee });
-//     });
-// });
 
 // fetching inventory id and device
 app.get('/devices', (req, res) => {

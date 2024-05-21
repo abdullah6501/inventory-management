@@ -18,6 +18,7 @@ import { ReaddeskComponent } from './readdesk/readdesk.component';
 import { EditComponent } from './edit/edit.component';
 // import { DataService } from './services/data.service';
 import { ToastrModule } from 'ngx-toastr';
+import { NewdeskComponent } from './newdesk/newdesk.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ToastrModule } from 'ngx-toastr';
     NewitemComponent,
     ReadComponent,
     ReaddeskComponent,
-    EditComponent
+    EditComponent,
+    NewdeskComponent
   ],
   imports: [
     BrowserModule,

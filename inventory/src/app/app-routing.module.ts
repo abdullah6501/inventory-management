@@ -6,6 +6,7 @@ import { ConnectionComponent } from './connection/connection.component';
 import { ReadComponent } from './read/read.component';
 import { ReaddeskComponent } from './readdesk/readdesk.component';
 import { NewitemComponent } from './newitem/newitem.component';
+import { NewdeskComponent } from './newdesk/newdesk.component';
 
 
 const routes: Routes = [
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'connection', component: ConnectionComponent },
   { path: 'read', component: ReadComponent },
   { path: 'readdesk', component: ReaddeskComponent },
-  { path: 'newitem', component: NewitemComponent }
+  { path: 'newitem', component: NewitemComponent },
+  { path: 'newdesk', component: NewdeskComponent }
 ];
 
 @NgModule({

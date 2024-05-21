@@ -1,17 +1,21 @@
 table {
-  /* border: 1px ridge black; */
+  border: 1px ridge black;
   position: absolute;
-  left: 15px;
+  left: 5px;
   top: 100px;
   font-size: 16px;
   font-family: cursive;
-  /* padding: 10px; */
+  max-width: 100px;
 }
 
-th,
+td {
+  padding: 8px;
+}
+
+/* th,
 td {
   border: 1px groove grey;
-}
+} */
 
 #color {
   background-color: white;
@@ -117,6 +121,36 @@ input {
   border-bottom: 1px ridge grey;
   box-shadow: -2px 0 5px rgba(214, 209, 209, 0.3);
 }
+
 input:focus {
   border: none;
+}
+
+#csv {
+  position: absolute;
+  top: 50px;
+  left: 1150px;
+}
+
+#csv:hover::after {
+  content: "Download All Details";
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(43, 91, 223, 0.7);
+  color: rgb(255, 255, 255);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  white-space: nowrap;
+  transition: all 0.4ms ease; /* Adds a smooth transition effect */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 999; /* Ensures the edit text appears above other elements */
+}
+
+.large-icon {
+  font-size: 36px; /* Adjust the size as needed */
+  width: 36px; /* Ensure the icon container is also larger */
+  height: 36px; /* Ensure the icon container is also larger */
 }
