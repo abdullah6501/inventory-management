@@ -1,14 +1,24 @@
 const express = require('express');
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express();
-const port = 3000;
+
+app.use(cors());
+
+
+// const corsOptions = {
+//   origin: 'http://192.168.0.140:91',
+//   optionsSuccessStatus: 200
+// };
+// app.use(cors(corsOptions));
+const port = process.env.PORT || 3003;
 
 // MySQL Connection
 const db = mysql.createConnection({
-  connectionLimit: 10,
+  // connectionLimit: 10,
+  // host: '192.168.0.140',
   host: 'localhost',
   user: 'root',
   password: 'root@123',
@@ -23,6 +33,19 @@ db.connect((err) => {
 // Middleware
 app.use(bodyParser.json());
 app.use(cors());
+
+//fetching inventory details
+app.get('/inventorydetails', (req, res) => {
+  const query = `SELECT * FROM inventory_info`;
+  db.query(query, (err, result) => {
+    if (err) {
+      console.log("Error fetching inventory details", err);
+      res.status(500).json({ error: 'Internal server error' });
+      return;
+    }
+    res.json(result);
+  });
+});
 
 app.get('/data', (req, res) => {
   const empName = req.query.Emp_name;
@@ -339,6 +362,12 @@ app.get('/api/desk', (req, res) => {
   });
 });
 
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
+
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  console.log(`Server running on ${port}`);
 });

@@ -18,6 +18,7 @@ export class AdditemComponent implements OnInit, OnDestroy {
   public apiUrl = environment.INVENTORY_BASEURL;
 
   devices: any[] = [];
+  Inventorydetails: any[] =[];
   private deviceSubscription: Subscription | undefined;
 
   connection() {
@@ -35,6 +36,7 @@ export class AdditemComponent implements OnInit, OnDestroy {
   constructor(private deviceService: DeviceService, private toastr: ToastrService, private router: Router, private http: HttpClient, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+    this.fetchInventoryDetails();
     this.deviceSubscription = this.deviceService.getDevices().subscribe({
       next: devices => {
         this.devices = devices.map(device => device.Devices);
@@ -49,6 +51,13 @@ export class AdditemComponent implements OnInit, OnDestroy {
     if (this.deviceSubscription) {
       this.deviceSubscription.unsubscribe();
     }
+  }
+
+  fetchInventoryDetails(){
+    const url = `${this.apiUrl}/inventorydetails`;
+    this.http.get<any[]>(url).subscribe(data =>{
+      this.Inventorydetails=data;
+    });
   }
 
   onSubmit(deviceSelect: string, deviceName: string, serialNumber: string, brand: string, condition: string) {

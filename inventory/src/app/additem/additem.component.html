@@ -6,7 +6,26 @@
 >
   Desk Data
 </button>
-
+<div class="total">
+  <table style="border: 1px groove grey">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Inventory ID</th>
+        <th>Devices</th>
+        <th>Count</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of Inventorydetails">
+        <td>{{ item.ID }}</td>
+        <td>{{ item.Inventory_ID }}</td>
+        <td>{{ item.Devices }}</td>
+        <td>{{ item.Count }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 <div class="button">
   <button mat-raised-button color="primary" (click)="connection()">
     Connection

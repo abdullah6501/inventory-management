@@ -54,3 +54,11 @@ mat-form-field {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   z-index: 999; /* Ensures the edit text appears above other elements */
 }
+
+.total {
+  position: absolute;
+  top: 150px;
+  left: 100px;
+  max-height: 600px;
+  overflow: auto;
+}
