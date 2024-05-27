@@ -18,53 +18,54 @@
 <button id="csv" mat-button (click)="downloadAllCSV()">
   <mat-icon class="large-icon">download_for_offline</mat-icon>
 </button>
-
-<table style="border: 1px groove grey">
-  <thead>
-    <tr>
-      <th>Employee Name</th>
-      <th>Desk</th>
-      <th>Monitor</th>
-      <th>Mouse</th>
-      <th>CPU</th>
-      <th>Key Board</th>
-      <th>VOIP IP Phone</th>
-      <th>Wooden Pedestal</th>
-      <th>Water Bottle</th>
-      <th>Bag</th>
-      <th>Web Camera</th>
-      <th>Head Phone</th>
-      <th>Edit</th>
-      <th>Download</th>
-    </tr>
-  </thead>
-  <tbody id="color">
-    <tr *ngFor="let item of filteredDeskData; let i = index">
-      <td>{{ item.Emp_name }}</td>
-      <td>{{ item.desk }}</td>
-      <td>{{ item.monitor }}</td>
-      <td>{{ item.mouse }}</td>
-      <td>{{ item.CPU }}</td>
-      <td>{{ item.key_board }}</td>
-      <td>{{ item.VOIP_IP_Phone }}</td>
-      <td>{{ item.Wooden_Pedestral }}</td>
-      <td>{{ item.Water_Bottle }}</td>
-      <td>{{ item.Bag }}</td>
-      <td>{{ item.web_camera }}</td>
-      <td>{{ item.Head_phone }}</td>
-      <td>
-        <button mat-button (click)="editEmployee(i)">
-          <mat-icon>mode_edit</mat-icon>
-        </button>
-      </td>
-      <td>
-        <button mat-button (click)="downloadCSV(item)">
-          <mat-icon>download</mat-icon>
-        </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="read">
+  <table style="border: 1px groove grey">
+    <thead>
+      <tr>
+        <th class="th">Employee Name</th>
+        <th class="th">Desk</th>
+        <th class="th">Monitor</th>
+        <th class="th">Mouse</th>
+        <th class="th">CPU</th>
+        <th class="th">Key Board</th>
+        <th class="th">VOIP IP Phone</th>
+        <th class="th">Wooden Pedestal</th>
+        <th class="th">Water Bottle</th>
+        <th class="th">Bag</th>
+        <th class="th">Web Camera</th>
+        <th class="th">Head Phone</th>
+        <th class="th">Edit</th>
+        <th class="th">Download</th>
+      </tr>
+    </thead>
+    <tbody id="color">
+      <tr *ngFor="let item of filteredDeskData; let i = index">
+        <td class="td">{{ item.Emp_name }}</td>
+        <td class="td">{{ item.desk }}</td>
+        <td class="td">{{ item.monitor }}</td>
+        <td class="td">{{ item.mouse }}</td>
+        <td class="td">{{ item.CPU }}</td>
+        <td class="td">{{ item.key_board }}</td>
+        <td class="td">{{ item.VOIP_IP_Phone }}</td>
+        <td class="td">{{ item.Wooden_Pedestral }}</td>
+        <td class="td">{{ item.Water_Bottle }}</td>
+        <td class="td">{{ item.Bag }}</td>
+        <td class="td">{{ item.web_camera }}</td>
+        <td class="td">{{ item.Head_phone }}</td>
+        <td class="td">
+          <button mat-button (click)="editEmployee(i)">
+            <mat-icon>mode_edit</mat-icon>
+          </button>
+        </td>
+        <td class="td">
+          <button mat-button (click)="downloadCSV(item)">
+            <mat-icon>download</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <!-- Edit Employee Modal -->
 <div class="modal" *ngIf="selectedEmployee" [@slideInOut]="'in'">

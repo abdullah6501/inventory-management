@@ -1,13 +1,13 @@
 .button {
   position: absolute;
-  left: 950px;
-  top: 30px;
+  left: 860px;
+  top: 130px;
 }
 
 .list {
   position: absolute;
-  left: 850px;
-  top: 140px;
+  left: 750px;
+  top: 210px;
   display: flex;
   gap: 10px;
   /* justify-content: space-between; */
@@ -25,17 +25,18 @@ mat-form-field {
 
 #data {
   position: absolute;
-  left: 230px;
-  top: 30px;
+  left: 760px;
+  top: 130px;
 }
 #new {
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 50px;
   border-radius: 50%;
   background-color: white;
   position: absolute;
-  top: 700px;
-  left: 1000px;
+  top: -100px;
+  /* left: 1000px; */
+  right: 8px;
 }
 
 #new:hover::after {
@@ -61,4 +62,14 @@ mat-form-field {
   left: 100px;
   max-height: 600px;
   overflow: auto;
+  background-color: white;
+  box-shadow: 10px 10px 5px grey;
+  font-size: 15px;
+}
+
+table,
+th,
+td {
+  border: 1px solid;
+  /* text-align: center; */
 }

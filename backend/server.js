@@ -18,8 +18,8 @@ const port = process.env.PORT || 3003;
 // MySQL Connection
 const db = mysql.createConnection({
   // connectionLimit: 10,
-  // host: '192.168.0.140',
-  host: 'localhost',
+  host: '192.168.0.140',
+  // host: 'localhost',
   user: 'root',
   password: 'root@123',
   database: 'inventory'
@@ -226,46 +226,6 @@ app.get('/data', (req, res) => {
   });
 });
 
-
-// corrected code
-
-// app.post('/api/save', (req, res) => {
-//   // const { employee, monitor, mouse, bag, wooden_pedestral, cpu, head_phone, key_board,
-//   //   voip_ip_phone, water_bottle, web_camera, desk }
-//   //    = req.body;
-//   console.log(req.body)
-//   const { employee, desk, devices } = req.body;
-//   console.log(devices)
-//   devices.forEach(function (value, i) {
-//     Console.log(value)
-//   })
-//   const insertDeskToSysSql = 'INSERT INTO desk_to_sys (monitor, mouse, Bag, Wooden_Pedestral, CPU, Head_phone, key_board, VOIP_IP_Phone, Water_Bottle, web_camera,desk) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-//   // const deskToSysValues = [monitor, mouse, bag, wooden_pedestral, cpu, head_phone, key_board, voip_ip_phone, water_bottle, web_camera, desk];
-//   const deskToSysValues = [employee, desk, devices];
-//   console.log(deskToSysValues)
-//   db.query(insertDeskToSysSql, deskToSysValues, (err1, result1) => {
-//     if (err1) {
-//       console.error('Error adding item:', err1);
-//       res.status(500).json({ error: 'Error adding item' });
-//       return;
-//     }
-//     console.log('Item added to desk_to_sys successfully');
-//     const insertResourceToSysSql = 'INSERT INTO resource_to_desk (desk, Emp_name) VALUES (?, ?)';
-//     const resourceToSysValues = [desk, employee];
-//     db.query(insertResourceToSysSql, resourceToSysValues, (err2, result2) => {
-//       if (err2) {
-//         console.error('Error adding item:', err2);
-//         res.status(500).json({ error: 'Error adding item' });
-//         return;
-//       }
-//       console.log('Item added to resource_to_sys successfully');
-//       res.json({ desk, employee, monitor, mouse, bag, wooden_pedestral, cpu, head_phone, key_board, voip_ip_phone, water_bottle, web_camera });
-//     });
-//   });
-// });
-
-
-
 // fetching inventory id and device
 app.get('/devices', (req, res) => {
   const sql = 'SELECT Inventory_ID,Devices FROM inventory_info';
@@ -274,7 +234,6 @@ app.get('/devices', (req, res) => {
     res.json(result);
   });
 });
-
 
 //adding the device details
 app.post('/api/device', (req, res) => {
