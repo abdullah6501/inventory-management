@@ -139,7 +139,8 @@ input:focus {
 #csv {
   position: absolute;
   top: 50px;
-  left: 1150px;
+  /* left: 1050px; */
+  right: 100px;
 }
 
 #csv:hover::after {

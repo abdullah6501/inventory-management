@@ -13,7 +13,7 @@ app.use(cors());
 //   optionsSuccessStatus: 200
 // };
 // app.use(cors(corsOptions));
-const port = process.env.PORT || 3003;
+const PORT = process.env.PORT || 3003;
 
 // MySQL Connection
 const db = mysql.createConnection({
@@ -32,7 +32,7 @@ db.connect((err) => {
 
 // Middleware
 app.use(bodyParser.json());
-app.use(cors());
+// app.use(cors());
 
 //fetching inventory details
 app.get('/inventorydetails', (req, res) => {
@@ -327,6 +327,6 @@ app.use((err, req, res, next) => {
   res.status(500).send('Something broke!');
 });
 
-app.listen(port, () => {
-  console.log(`Server running on ${port}`);
+app.listen(PORT, () => {
+  console.log(`Server running on ${PORT}`);
 });
