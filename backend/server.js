@@ -75,6 +75,29 @@ app.get('/data', (req, res) => {
   });
 });
 
+
+app.get('/api/allocated_items', (req, res) => {
+  const allocatedQuery = `
+  SELECT r.Emp_name AS allocatedEmployee, m.Monitor_Name AS allocatedDevice, dts.desk AS allocatedDesk
+  FROM resource_to_desk r
+  LEFT JOIN desk_to_sys dts ON r.desk = dts.desk
+  LEFT JOIN monitor_info m ON dts.monitor = m.Monitor_Name OR dts.mouse = m.Monitor_Name
+      OR dts.Bag = m.Monitor_Name OR dts.Wooden_Pedestral = m.Monitor_Name OR dts.CPU = m.Monitor_Name
+      OR dts.Head_phone = m.Monitor_Name OR dts.key_board = m.Monitor_Name OR dts.VOIP_IP_Phone = m.Monitor_Name
+      OR dts.Water_Bottle = m.Monitor_Name OR dts.web_camera = m.Monitor_Name;  
+  `;
+
+  db.query(allocatedQuery, (err, results) => {
+    if (err) {
+      console.error('Error fetching allocated items:', err);
+      res.status(500).json({ error: 'Internal server error' });
+      return;
+    }
+    res.json(results);
+  });
+});
+
+
 app.post('/api/save', (req, res) => {
   const { employee, desk, devices } = req.body;
 
