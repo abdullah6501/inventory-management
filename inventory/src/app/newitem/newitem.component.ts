@@ -46,4 +46,8 @@ export class NewitemComponent {
   goDesk() {
     this.router.navigate(['/newdesk'])
   }
+
+  goEmployee() {
+    this.router.navigate(['/newname']);
+  }
 }

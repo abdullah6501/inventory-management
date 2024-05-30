@@ -7,6 +7,7 @@ import { ReadComponent } from './read/read.component';
 import { ReaddeskComponent } from './readdesk/readdesk.component';
 import { NewitemComponent } from './newitem/newitem.component';
 import { NewdeskComponent } from './newdesk/newdesk.component';
+import { NewnameComponent } from './newname/newname.component';
 
 
 const routes: Routes = [
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'read', component: ReadComponent },
   { path: 'readdesk', component: ReaddeskComponent },
   { path: 'newitem', component: NewitemComponent },
-  { path: 'newdesk', component: NewdeskComponent }
+  { path: 'newdesk', component: NewdeskComponent },
+  { path: 'newname', component: NewnameComponent }
 ];
 
 @NgModule({

@@ -6,6 +6,8 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ToastrService } from 'ngx-toastr';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 
 @Component({
@@ -18,7 +20,7 @@ export class AdditemComponent implements OnInit, OnDestroy {
   public apiUrl = environment.INVENTORY_BASEURL;
 
   devices: any[] = [];
-  Inventorydetails: any[] =[];
+  Inventorydetails: any[] = [];
   private deviceSubscription: Subscription | undefined;
 
   connection() {
@@ -53,11 +55,23 @@ export class AdditemComponent implements OnInit, OnDestroy {
     }
   }
 
-  fetchInventoryDetails(){
+  fetchInventoryDetails() {
     const url = `${this.apiUrl}/inventorydetails`;
-    this.http.get<any[]>(url).subscribe(data =>{
-      this.Inventorydetails=data;
+    this.http.get<any[]>(url).subscribe(data => {
+      this.Inventorydetails = data;
     });
+  }
+
+  downloadPDF() {
+    const doc = new jsPDF();
+    const head = [['ID', 'Inventory ID', 'Devices', 'Count']];
+    const data = this.Inventorydetails.map(item => [item.ID, item.Inventory_ID, item.Devices, item.Count]);
+    (doc as any).autoTable({
+      head: head,
+      body: data,
+    });
+
+    doc.save('inventory-details.pdf');
   }
 
   onSubmit(deviceSelect: string, deviceName: string, serialNumber: string, brand: string, condition: string) {

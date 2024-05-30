@@ -1,3 +1,8 @@
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+/>
+
 <button
   id="data"
   mat-raised-button
@@ -6,6 +11,14 @@
 >
   Details
 </button>
+<!-- <button class="pdf" (click)="downloadPDF()">Download PDF</button> -->
+<!-- <button mat-raised-button color="primary" class="pdf" (click)="downloadPDF()">
+  <mat-icon> cloud_download</mat-icon>
+</button> -->
+<button class="pdf" (click)="downloadPDF()">
+  <i class="fas fa-download"></i>
+</button>
+
 <div class="total">
   <table style="border: 1px groove grey">
     <thead>

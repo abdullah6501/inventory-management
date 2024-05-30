@@ -3,13 +3,13 @@
 </button>
 
 <div class="box">
-  <h1>Add New Desk</h1>
+  <h1>Add Employee Name</h1>
   <mat-form-field class="add">
-    <mat-label>New Desk</mat-label>
+    <mat-label>Employee Name</mat-label>
     <input
       matInput
       placeholder="Device"
-      [(ngModel)]="newDesk"
+      [(ngModel)]="newName"
     /> </mat-form-field
   ><br />
   <button
@@ -24,7 +24,5 @@
 </div>
 <div class="desk">
   <button mat-raised-button color="primary" (click)="goDevice()">Device</button>
-  <button mat-raised-button color="primary" (click)="goEmployee()">
-    Employee
-  </button>
+  <button mat-raised-button color="primary" (click)="goDesk()">Desk</button>
 </div>

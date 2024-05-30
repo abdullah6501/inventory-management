@@ -22,7 +22,7 @@ const db = mysql.createConnection({
   // host: 'localhost',
   user: 'root',
   password: 'root@123',
-  database: 'inventory'
+  database: 'invent'
 });
 
 db.connect((err) => {
@@ -33,6 +33,46 @@ db.connect((err) => {
 // Middleware
 app.use(bodyParser.json());
 // app.use(cors());
+
+app.post('/add/name', (req, res) => {
+  const { desk } = req.body;
+
+  if (!desk) {
+    return res.status(400).json({ error: 'Employee name is required' });
+  }
+
+  const query = 'INSERT INTO name (Emp_Name) VALUES (?)';
+
+  db.query(query, [desk], (err, result) => {
+    if (err) {
+      console.error('Error executing query:', err);
+      return res.status(500).json({ error: 'Database error' });
+    }
+    res.status(201).json({ message: 'Employee name added successfully', id: result.insertId });
+  });
+});
+
+
+app.post('/add/desk', (req, res) => {
+  const { desk_name } = req.body;
+
+  if (!desk_name) {
+    return res.status(400).json({ error: 'Desk name is required' });
+  }
+
+  const query = 'INSERT INTO desk (desk_name) VALUES (?)';
+
+  db.query(query, [desk_name], (err, result) => {
+    if (err) {
+      console.error('Database error:', err);
+      if (err.code === 'ER_DUP_ENTRY') {
+        return res.status(409).json({ error: 'Desk name already exists' });
+      }
+      return res.status(500).json({ error: 'Database error', details: err.message });
+    }
+    res.status(201).json({ message: 'Desk added successfully', id: result.insertId });
+  });
+});
 
 //fetching inventory details
 app.get('/inventorydetails', (req, res) => {
@@ -258,7 +298,7 @@ app.get('/devices', (req, res) => {
   });
 });
 
-//adding the device details
+
 app.post('/api/device', (req, res) => {
   const { deviceSelect, deviceName, serialNumber, brand, condition } = req.body;
 
@@ -279,7 +319,7 @@ app.post('/api/device', (req, res) => {
     const inventoryId = results[0].Inventory_ID;
 
     // Increment count in inventory_info table
-    const incrementQuery = 'UPDATE inventory_info SET Count = Count + 1 WHERE Devices = ?';
+    const incrementQuery = 'UPDATE inventory_info SET Count = Count + 1 WHERE Inventory_ID = ?';
     db.query(incrementQuery, [inventoryId], (err, result) => {
       if (err) {
         console.error(err);
@@ -299,6 +339,48 @@ app.post('/api/device', (req, res) => {
     });
   });
 });
+
+// //adding the device details
+// app.post('/api/device', (req, res) => {
+//   const { deviceSelect, deviceName, serialNumber, brand, condition } = req.body;
+
+//   if (!deviceSelect || !deviceName || !serialNumber || !brand || !condition) {
+//     return res.status(400).json('Missing required fields');
+//   }
+
+//   const query = 'SELECT Inventory_ID FROM inventory_info WHERE Devices = ?';
+//   db.query(query, [deviceSelect], (err, results) => {
+//     if (err) {
+//       console.error(err);
+//       return res.status(500).json('Error fetching Inventory_ID');
+//     }
+//     if (results.length === 0) {
+//       return res.status(404).json('No inventory found for the selected device');
+//     }
+
+//     const inventoryId = results[0].Inventory_ID;
+
+//     // Increment count in inventory_info table
+//     const incrementQuery = 'UPDATE inventory_info SET Count = Count + 1 WHERE Devices = ?';
+//     db.query(incrementQuery, [inventoryId], (err, result) => {
+//       if (err) {
+//         console.error(err);
+//         return res.status(500).json('Error incrementing count in inventory_info table');
+//       }
+
+//       const insertQuery = 'INSERT INTO monitor_info (Inventory_ID, Devices, Monitor_Name, Serial_No, Brand, `Condition`) VALUES (?, ?, ?, ?, ?, ?)';
+//       const values = [inventoryId, deviceSelect, deviceName, serialNumber, brand, condition];
+
+//       db.query(insertQuery, values, (err, results) => {
+//         if (err) {
+//           console.error(err);
+//           return res.status(500).json('Error inserting data');
+//         }
+//         return res.status(200).json('Data inserted successfully');
+//       });
+//     });
+//   });
+// });
 
 //fetching  employee name
 app.get('/api/employee', (req, res) => {
