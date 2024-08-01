@@ -1,9 +1,16 @@
-<button mat-raised-button color="primary" (click)="goHome()">
+<div class="app-container">
+  <div class="header">
+    <h1 class="pozpro">Inventory Management</h1>
+  </div>
+  <div class="content">
+
+
+<button mat-icon-button color="primary" (click)="goHome()">
   <mat-icon>west</mat-icon>
 </button>
 
 <div class="box">
-  <h1>Add New Desk</h1>
+  <h1 class="t-h1">Add New Desk</h1>
   <mat-form-field class="add">
     <mat-label>New Desk</mat-label>
     <input
@@ -27,4 +34,9 @@
   <button mat-raised-button color="primary" (click)="goEmployee()">
     Employee
   </button>
+</div>
+</div>
+<div class="footer">
+  <p class="copyright">&copy; 2024 Project Portfolio</p>
+</div>
 </div>

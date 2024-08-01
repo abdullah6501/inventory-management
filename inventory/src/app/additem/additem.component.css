@@ -1,4 +1,4 @@
-.button {
+/* .button {
   position: absolute;
   left: 860px;
   top: 130px;
@@ -10,7 +10,6 @@
   top: 210px;
   display: flex;
   gap: 10px;
-  /* justify-content: space-between; */
 }
 
 #butt {
@@ -35,7 +34,6 @@ mat-form-field {
   background-color: white;
   position: absolute;
   top: -100px;
-  /* left: 1000px; */
   right: 8px;
 }
 
@@ -99,4 +97,388 @@ td {
 
 .pdf:active {
   background-color: #283593;
+} */
+
+/* .app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.header {
+  background-color: #3f69d3;
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+}
+
+.pozpro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10px;
+  font-size: 36px;
+}
+
+.footer {
+  background-color: #3f69d3;
+  color: #fff;
+  text-align: center;
+  display: flex;
+  padding-left: 7px;
+  padding-top: 5px;
+}
+
+.copyright {
+  margin: 0 0 7px;
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  background-image: url("/assets/bg1.avif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.button {
+  position: absolute;
+  left: 860px;
+  top: 130px;
+}
+
+.list {
+  position: absolute;
+  left: 750px;
+  top: 210px;
+  display: flex;
+  gap: 10px;
+}
+
+#butt {
+  position: absolute;
+  left: 120px;
+  top: 430px;
+}
+
+mat-form-field {
+  width: 300px;
+}
+
+#data {
+  position: absolute;
+  left: 760px;
+  top: 130px;
+}
+#new {
+  width: 40px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: white;
+  position: absolute;
+  top: -100px;
+  right: 8px;
+}
+
+#new:hover::after {
+  content: "Add";
+  position: absolute;
+  top: 130%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(43, 91, 223, 0.7);
+  color: rgb(255, 255, 255);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  white-space: nowrap;
+  transition: all 0.4ms ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+}
+
+.total {
+  position: absolute;
+  top: 150px;
+  left: 100px;
+  max-height: 600px;
+  overflow: auto;
+  font-size: 15px;
+}
+
+th,
+td {
+  border: 1px solid;
+}
+
+table {
+  border: 1px groove grey;
+  box-shadow: 10px 10px 5px grey;
+}
+
+.pdf {
+  margin-left: 320px;
+  margin-bottom: 5px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background-color: #3f51b5;
+  color: white;
+  cursor: pointer;
+}
+
+.pdf i {
+  font-size: 24px;
+}
+
+.pdf:hover {
+  background-color: #3cd488;
+}
+
+.pdf:active {
+  background-color: #283593;
+}
+
+@media (max-width: 480px) {
+  .content {
+    flex-direction: column;
+  }
+} */
+
+/* 
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.header {
+  background-color: #3f69d3;
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.pozpro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10px;
+  font-size: 36px;
+}
+
+.footer {
+  background-color: #3f69d3;
+  color: #fff;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.button {
+  margin-top: 10px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 300px;
+}
+
+#butt {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.total {
+  max-height: 600px;
+  overflow: auto;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+}
+
+.pdf {
+  margin-top: 10px;
+} */
+
+/* General Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Header Styles */
+.header {
+  background-color: #3f69d3;
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+}
+
+.pozpro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 36px;
+  margin: 0;
+}
+
+/* Footer Styles */
+.footer {
+  background-color: #3f69d3;
+  color: #fff;
+  text-align: center;
+  display: flex;
+  padding-left: 7px;
+  padding-top: 5px;
+  padding-bottom: 2px;
+  /* justify-content: center;
+  padding: 10px; */
+}
+
+.copyright {
+  margin: 0;
+}
+
+/* Content Styles */
+.content {
+  display: flex;
+  flex: 1;
+  background-image: url("/assets/bg1.avif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+/* Button Styles */
+
+.button {
+  position: absolute;
+  left: 170px;
+  top: 115px;
+  display: flex;
+  gap: 10px;
+}
+
+/* List Styles */
+.list {
+  position: absolute;
+  left: 170px;
+  top: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#butt {
+  position: absolute;
+  left: 100px;
+  bottom: -100px;
+}
+
+#new {
+  width: 30px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: white;
+  position: absolute;
+  top: -80px;
+  right: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.total {
+  position: absolute;
+  top: 30px;
+  right: 100px;
+  max-height: 900px;
+  overflow: auto;
+  font-size: 15px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  box-shadow: 10px 10px 5px grey;
+  background-color: white;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+/* PDF Button Styles */
+.pdf {
+  margin-left: 370px;
+  margin-bottom: 5px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background-color: #3f51b5;
+  color: white;
+  cursor: pointer;
+}
+
+.pdf i {
+  font-size: 24px;
+}
+
+.pdf:hover {
+  background-color: #3cd488;
+}
+
+.pdf:active {
+  background-color: #283593;
+}
+
+/* Form Field Styles */
+mat-form-field {
+  width: 300px;
 }

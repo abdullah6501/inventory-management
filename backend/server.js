@@ -18,8 +18,7 @@ const PORT = process.env.PORT || 3003;
 // MySQL Connection
 const db = mysql.createConnection({
   // connectionLimit: 10,
-  host: '192.168.0.140',
-  // host: 'localhost',
+  host: 'localhost',
   user: 'root',
   password: 'root@123',
   database: 'invent'

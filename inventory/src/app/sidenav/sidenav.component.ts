@@ -1,32 +1,142 @@
-import { Component } from '@angular/core';
+// import { HttpClient } from '@angular/common/http';
+// import { Component } from '@angular/core';
+// import { MatSnackBar } from '@angular/material/snack-bar';
+// import { Router } from '@angular/router';
+// import { ToastrService } from 'ngx-toastr';
+// import { DeviceService } from '../services/device.service';
+
+// @Component({
+//   selector: 'app-sidenav',
+//   templateUrl: './sidenav.component.html',
+//   styleUrls: ['./sidenav.component.css']
+// })
+// export class SidenavComponent {
+//   constructor(private deviceService: DeviceService, private toastr: ToastrService, private router: Router, private http: HttpClient, private snackBar: MatSnackBar) { }
+
+//   badgevisible = false;
+//   badgevisibility() {
+//     this.badgevisible = true;
+//   }
+//   admin() {
+//     // Navigate to the dashboard component
+//     this.router.navigate(['/admin']);
+//   }
+//   user() {
+//     // Navigate to the dashboard component
+//     this.router.navigate(['/user']);
+//   }
+//   edit() {
+//     // Navigate to the dashboard component
+//     this.router.navigate(['/edit']);
+//   }
+// }
+
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { DeviceService } from '../services/device.service';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environment/envirinment';
+import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ToastrService } from 'ngx-toastr';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+
 
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.css']
 })
-export class SidenavComponent {
-  constructor(private router: Router) { }
+export class SidenavComponent implements OnInit, OnDestroy {
 
-  badgevisible = false;
-  badgevisibility() {
-    this.badgevisible = true;
+  public apiUrl = environment.INVENTORY_BASEURL;
+
+  devices: any[] = [];
+  Inventorydetails: any[] = [];
+  private deviceSubscription: Subscription | undefined;
+
+  connection() {
+    this.router.navigate(['/connection']);
   }
-  admin() {
-    // Navigate to the dashboard component
-    this.router.navigate(['/admin']);
+
+  navigateToDeskData() {
+    this.router.navigate(['/read']);
   }
-  user() {
-    // Navigate to the dashboard component
-    this.router.navigate(['/user']);
+
+  goNew() {
+    this.router.navigate(['/newitem']);
   }
-  edit() {
-    // Navigate to the dashboard component
-    this.router.navigate(['/edit']);
+
+  constructor(private deviceService: DeviceService, private toastr: ToastrService, private router: Router, private http: HttpClient, private snackBar: MatSnackBar) { }
+
+  ngOnInit(): void {
+    this.fetchInventoryDetails();
+    this.deviceSubscription = this.deviceService.getDevices().subscribe({
+      next: devices => {
+        this.devices = devices.map(device => device.Devices);
+      },
+      error: error => {
+        console.error(error);
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.deviceSubscription) {
+      this.deviceSubscription.unsubscribe();
+    }
+  }
+
+  fetchInventoryDetails() {
+    const url = `${this.apiUrl}/inventorydetails`;
+    this.http.get<any[]>(url).subscribe(data => {
+      this.Inventorydetails = data;
+    });
+  }
+
+  downloadPDF() {
+    const doc = new jsPDF();
+    const head = [['ID', 'Inventory ID', 'Devices', 'Count']];
+    const data = this.Inventorydetails.map(item => [item.ID, item.Inventory_ID, item.Devices, item.Count]);
+    (doc as any).autoTable({
+      head: head,
+      body: data,
+    });
+
+    doc.save('inventory-details.pdf');
+  }
+
+  onSubmit(deviceSelect: string, deviceName: string, serialNumber: string, brand: string, condition: string) {
+    const formData = {
+      deviceSelect: deviceSelect,
+      deviceName: deviceName,
+      serialNumber: serialNumber,
+      brand: brand,
+      condition: condition
+    };
+    const url = `${this.apiUrl}/api/device`;
+    this.http.post(url, formData, { responseType: 'text' }).subscribe({
+      next: (response) => {
+        console.log(response);
+        // this.toastr.success('Device added successfully!');
+        this.snackBar.open('Device added successfully!', 'Close', {
+          duration: 3000,
+          verticalPosition: 'bottom',
+          horizontalPosition: 'right'
+        });
+      },
+      error: (error) => {
+        console.error(error);
+        // this.toastr.error('Failed to add device.');
+        this.snackBar.open('Failed to add device.', 'Close', {
+          duration: 3000,
+          verticalPosition: 'bottom',
+          horizontalPosition: 'right'
+        });
+      }
+    });
   }
 }
 
 
-
-``

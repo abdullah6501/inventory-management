@@ -50,7 +50,13 @@ export class ReadComponent implements OnInit {
   selectedEmployee: Employee | null = null;
   animationState: string = 'out';
   searchTerm: string = '';
-  searchType: 'Emp_name' | 'desk' = 'Emp_name';
+  // searchType: 'Emp_name' | 'desk' = 'Emp_name';
+  searchType: string = '';
+
+  searchTypes: any[] = [
+    { label: 'Employee Name', value: 'Emp_name' },
+    { label: 'Desk', value: 'desk' }
+  ];
 
   goBack() {
     this.router.navigate(['/additem']);

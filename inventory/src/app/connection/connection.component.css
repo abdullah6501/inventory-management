@@ -1,35 +1,93 @@
 .list {
   position: absolute;
   left: 80%;
+  top: 150px;
   box-shadow: 10px 10px 20px grey;
-  background-color: white;
+  background-color: transparent;
   width: 200px;
-  height: 620px;
+  height: 700px;
 }
 
 .desk {
   position: absolute;
-  top: 600px;
+  bottom: 110px;
   left: 100px;
 }
 
 .device {
   position: absolute;
-  left: 100px;
-  top: 50px;
-  /* padding: 10px; */
+  left: 120px;
+  top: 140px;
   display: flex;
   gap: 20px;
 }
 
 .button {
   position: absolute;
-  top: 60px;
-  left: 800px;
+  top: 155px;
+  right: 400px;
 }
 
 .button1 {
   position: absolute;
-  top: 600px;
-  left: 800px;
+  bottom: 140px;
+  right: 400px;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.header {
+  background-color: #3f69d3;
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+}
+
+.pozpro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 36px;
+  margin: 0;
+}
+
+.footer {
+  background-color: #3f69d3;
+  color: #fff;
+  text-align: center;
+  display: flex;
+  padding-left: 7px;
+  padding-top: 5px;
+  padding-bottom: 2px;
+}
+
+.copyright {
+  margin: 0;
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  background-image: url("/assets/bg1.avif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* New Photo Styles */
+.new-photo {
+  position: absolute; /* Adjust as needed */
+  bottom: 250px; /* Position it as required */
+  left: 70px; /* Adjust position */
+}
+
+.new-photo img {
+  max-width: 800px; /* Set a max-width for the image */
+  height: 500px; /* Maintain aspect ratio */
 }

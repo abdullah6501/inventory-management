@@ -1,4 +1,4 @@
-<div>
+<!-- <div>
   <mat-toolbar
     class="mat-elevation-z8"
     style="background-color: #3c9ab0; height: 85px"
@@ -23,13 +23,13 @@
     position="start"
     style="background-color: #5b7595"
   >
-    <mat-nav-list>
-      <!-- <mat-list-item>
+    <mat-nav-list> -->
+<!-- <mat-list-item>
         <button routerLink="/portfolio" mat-button style="color: white">
           <mat-icon></mat-icon> PORTFOLIO
         </button>
       </mat-list-item> -->
-      <mat-list-item>
+<!-- <mat-list-item>
         <button routerLink="/additem" mat-button style="color: white" disabled>
           <mat-icon>devices</mat-icon>INVENTORY
         </button>
@@ -49,4 +49,114 @@
   <div>
     <span style="text-align: left">&copy; 2024 Pozent Corporation</span>
   </div>
-</footer>
+</footer> -->
+
+<!-- 
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+/>
+
+<div class="app-container">
+  <div class="header">
+    <h1 class="pozpro">Inventory Management</h1>
+  </div>
+  <div class="content">
+    <button
+      id="data"
+      mat-raised-button
+      color="primary"
+      (click)="navigateToDeskData()"
+    >
+      Details
+    </button>
+    <button class="pdf" (click)="downloadPDF()">
+      <i class="fas fa-download"></i>
+    </button>
+    <div class="total">
+      <table style="border: 1px groove grey">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Inventory ID</th>
+            <th>Devices</th>
+            <th>Count</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of Inventorydetails">
+            <td>{{ item.ID }}</td>
+            <td>{{ item.Inventory_ID }}</td>
+            <td>{{ item.Devices }}</td>
+            <td>{{ item.Count }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="button">
+      <button mat-raised-button color="primary" (click)="connection()">
+        Assign
+      </button>
+    </div>
+    <div class="list">
+      <form
+        (submit)="
+          onSubmit(
+            deviceSelect.value,
+            deviceName.value,
+            serialNumber.value,
+            brand.value,
+            condition.value
+          )
+        "
+      >
+        <mat-form-field>
+          <mat-label>Select Device</mat-label>
+          <mat-select #deviceSelect>
+            <mat-option *ngFor="let device of devices" [value]="device">
+              {{ device }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br />
+        <mat-form-field appearance="fill">
+          <mat-label>Enter Device Name</mat-label>
+          <input
+            matInput
+            placeholder=" Device Name"
+            #deviceName
+          /> </mat-form-field
+        ><br />
+        <mat-form-field appearance="fill">
+          <mat-label>Enter Serial Number</mat-label>
+          <input
+            matInput
+            placeholder="Serial Number"
+            #serialNumber
+          /> </mat-form-field
+        ><br />
+        <mat-form-field appearance="fill">
+          <mat-label>Enter Brand</mat-label>
+          <input matInput placeholder="Brand" #brand /> </mat-form-field
+        ><br />
+        <mat-form-field appearance="fill">
+          <mat-label>Condition</mat-label>
+          <mat-select #condition>
+            <mat-option value="good">Good</mat-option>
+            <mat-option value="need exchange">Need Exchange</mat-option>
+          </mat-select> </mat-form-field
+        ><br />
+        <button id="butt" type="submit" mat-raised-button color="primary">
+          submit
+        </button>
+      </form>
+
+      <button id="new" type="submit" mat-raised-button (click)="goNew()">
+        +
+      </button>
+    </div>
+  </div>
+  <div class="footer">
+    <p class="copyright">&copy; 2024 Project Portfolio</p>
+  </div>
+</div> -->

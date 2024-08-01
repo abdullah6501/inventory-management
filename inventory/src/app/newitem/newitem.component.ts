@@ -17,7 +17,7 @@ export class NewitemComponent {
   constructor(private http: HttpClient, private router: Router, private snackBar: MatSnackBar) { }
 
   submitDevice() {
-    const url = `${this.apiUrl}/add/list`; // Corrected endpoint URL
+    const url = `${this.apiUrl}/add/list`; 
     this.http.post(url, { device: this.newDevice }).subscribe({
       next: (response: any) => {
         console.log('Device submitted successfully', response);
@@ -26,7 +26,7 @@ export class NewitemComponent {
           verticalPosition: 'bottom',
           horizontalPosition: 'right'
         });
-        this.newDevice = ''; // Reset the input field
+        this.newDevice = '';
       },
       error: (error: any) => {
         console.error('Error submitting device', error);

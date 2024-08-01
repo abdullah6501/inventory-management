@@ -1,3 +1,51 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+
+.header {
+  background-color: #3f69d3;
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+}
+
+.pozpro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 36px;
+  margin: 0;
+}
+
+
+.footer {
+  background-color: #3f69d3;
+  color: #fff;
+  text-align: center;
+  display: flex;
+  padding-left: 7px;
+  padding-top: 5px;
+  padding-bottom: 2px;
+}
+
+.copyright {
+  margin: 0;
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  background-image: url("/assets/bg1.avif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .box {
   box-shadow: 5px 5px 10px 10px rgba(0, 0, 0, 0.2);
   width: 400px;
@@ -10,24 +58,25 @@
   align-items: center;
   margin-left: 400px;
   margin-top: 150px;
-  background-color: white;
+  /* background-color: #ededed; */
+  background-color: transparent;
 }
 
 .box:hover {
   box-shadow: 0px 0px 6px 2px rgb(164, 218, 235);
 }
 
-h1 {
+.t-h1 {
   color: rgb(77, 75, 221, 1);
   position: absolute;
-  top: 240px;
+  top: 300px;
 }
 
 .desk {
   position: absolute;
   /* left: 900px; */
   right: 100px;
-  top: 50px;
+  top: 150px;
   display: flex;
   gap: 30px;
 }

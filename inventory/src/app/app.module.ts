@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SidenavComponent } from './sidenav/sidenav.component';
+// import { SidenavComponent } from './sidenav/sidenav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material-module';
 import { AdditemComponent } from './additem/additem.component';
@@ -20,11 +20,15 @@ import { EditComponent } from './edit/edit.component';
 import { ToastrModule } from 'ngx-toastr';
 import { NewdeskComponent } from './newdesk/newdesk.component';
 import { NewnameComponent } from './newname/newname.component';
+import { TableModule } from 'primeng/table';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputTextModule } from 'primeng/inputtext';
+import { DividerModule } from 'primeng/divider';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidenavComponent,
+    // SidenavComponent,
     AdditemComponent,
     PortfolioComponent,
     ConnectionComponent,
@@ -45,7 +49,11 @@ import { NewnameComponent } from './newname/newname.component';
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    TableModule,
+    DropdownModule,
+    InputTextModule,
+    DividerModule
   ],
   providers: [DeviceService],
   bootstrap: [AppComponent]
